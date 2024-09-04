@@ -81,17 +81,19 @@ def get_pie_chart(entered_site):
 def get_scatter_chart(entered_site, payload):
     if entered_site == 'ALL Sites':
         fig = px.scatter(spacex_df, x='Payload Mass (kg)', 
-        y='class', color='Booster Version',
+        y='class', color='Booster Version Category',
         title='Correlation for Payload and Success for all Sites')
         fig.update_xaxes(range=payload)
+        fig.update_yaxes(title='class: 0 failure, 1 success')
         return fig
     else:
         data = spacex_df[spacex_df['Launch Site'] == entered_site]
         # return the outcomes piechart for a selected site
         fig = px.scatter(data, x='Payload Mass (kg)', 
-        y='class', color='Booster Version',  
+        y='class', color='Booster Version Category',  
         title='Correlation for Payload and Success for Site {}'.format(entered_site))
         fig.update_xaxes(range=payload)
+        fig.update_yaxes(title='class: 0 failure, 1 success')        
         return fig
 
 # Run the app
